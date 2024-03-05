@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Training Universal Vocoders with Feature Smoothing-based Augmentation Methods for High-quality TTS Systems</title>
+<!-- <link rel="shortcut icon" href="img/TODO.png">
+<link rel="icon" href="img/TODO.png">
+<link rel="apple-touch-icon" href="img/TODO.png"> -->
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="Training Universal Vocoders with Feature Smoothing-based Augmentation Methods for High-quality TTS Systems">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://is2024-374.github.io/demos/">
+<meta property="og:url" content="https://is2024-374.github.io/demos/">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#157878">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-new-gr-c-s-check-loaded="14.1001.0" data-gr-ext-installed="">
+<section class="page-header">
+<!-- <h1 class="project-name">Demo PAGE</h1> -->
+<!-- <h2 class="project-tagline"></h2> -->
+      
+      
+</section>
+
+<section class="main-content">
+<h1 id=""><center> Training Universal Vocoders with Feature Smoothing-based Augmentation Methods for High-quality TTS Systems </center></h1>
+<br>
+<div id="authors">
+<center> <i>Anonymous submission to Interspeech 2024</i><!-- <sup>1</sup> --></center>
+</div>
+<br>
+<!-- <div id="aff">
+<center> <sup>1</sup> Affiliation</center>
+</div> -->
+
+<hr>
+
+<h2 id="abstract">Abstract</h2>
+<p>While universal vocoders have demonstrated proficient waveform generation across diverse voices, their integration into text-to-speech (TTS) tasks often results in degraded synthetic quality. To address this challenge, we present a novel augmentation technique for training universal vocoders. Our training scheme randomly applies linear smoothing filters to input acoustic features, facilitating vocoder generalization across a wide range of smoothings. It significantly mitigates the training-inference mismatch, enhancing the naturalness of synthetic output even when the TTS acoustic model produces overly smoothed acoustic features. Notably, our method is applicable to any neural vocoder without requiring architectural modifications or dependencies on specific acoustic models. Experimental results validate the superiority of our vocoder over conventional methods, achieving 11.99% and 12.05% improvements in mean opinion scores when integrated with Tacotron 2 and FastSpeech 2 TTS acoustic models, respectively.</p>
+<ul>
+<li>Last update: 5 Mar 2024</li>
+</ul>
+<center>
+  <img src="img/TODO.png">
+</center>
+  
+<br>
+
+<hr>
+
+<div id="toc_container">
+<h2><p class="toc_title">Systems</p></h2>
+<ul>
+  <li> <b>Universal</b>: Universal vocoder trained with the ground-truth acoustic features</li>
+  <li> <b>FT</b>: Speaker-dependent vocoder fine-tuned using the acoustic model's generation</li>
+  <li> <b>Universal-SA (Proposed)</b>: Universal vocoder trained with the smoothing augmentation</li>
+</ul>
+</div>
+<br>
+<hr>
+
+<a name="tts_samples"><h2>TTS samples</h2></a>
+<a name="ar"><h3>Tacotron 2 + eUnivNet</h3></a>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Recording</strong></th>
+      <th style="text-align: center"><strong>Universal</strong></th>
+      <th style="text-align: center"><strong>FT</strong></th>
+      <th style="text-align: center"><strong style="color:red">Universal-SA (Proposed)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_baseline/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_txt/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_txt/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_baseline/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_txt/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/ar_01k_txt2/fkhy024754.wav" controls="" preload=""></audio></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<a name="nar"><h3>Tacotron 2 + HiFi-GAN V1</h3></a>
+<table>
+  <thead>
+      <th style="text-align: center"><strong>Recording</strong></th>
+      <th style="text-align: center"><strong>Universal</strong></th>
+      <th style="text-align: center"><strong>FT</strong></th>
+      <th style="text-align: center"><strong style="color:red">Universal-SA (Proposed)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_baseline/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_baseline/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt2/fkhy024754.wav" controls="" preload=""></audio></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<a name="nar"><h3>FastSpeech 2 + eUnivNet</h3></a>
+<table>
+  <thead>
+      <th style="text-align: center"><strong>Recording</strong></th>
+      <th style="text-align: center"><strong>Universal</strong></th>
+      <th style="text-align: center"><strong>FT</strong></th>
+      <th style="text-align: center"><strong style="color:red">Universal-SA (Proposed)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_baseline/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt/fkhy089991.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt/fkhy022600.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_baseline/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt/fkhy024754.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/nar_01k_txt2/fkhy024754.wav" controls="" preload=""></audio></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<hr>
+
+<footer class="site-footer">
+	<span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+</footer>
+</section>
+</body></html>
