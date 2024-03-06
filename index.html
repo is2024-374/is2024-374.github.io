@@ -69,7 +69,7 @@
         FastSpeech 2 TTS acoustic models, respectively.
       </p>
       <ul>
-        <li>Last update: 5 Mar 2024</li>
+        <li>Last update: 6 Mar 2024</li>
       </ul>
       <center><img src="img/TODO.png" /></center>
 
@@ -78,39 +78,57 @@
 
       <div id="toc_container">
         <h2><p class="toc_title">Systems</p></h2>
+        <h3>Vocoder training methods</h3>
         <ul>
           <li>
-            <b>Universal</b>: Universal vocoder trained with the ground-truth acoustic features
+            <b>ST</b>: Universal vocoder separately trained (ST) from acoustic models using the
+            ground-truth acoustic features
           </li>
           <li>
-            <b>FT</b>: Speaker-dependent vocoder fine-tuned using the acoustic model's generation
+            <b>FT</b>: Speaker-dependent vocoder fine-tuned using the corresponding acoustic model's
+            generation
           </li>
           <li>
-            <strong style="color: rgb(241, 53, 53)">Universal-SA (Proposed)</strong>: Universal
-            vocoder trained with the smoothing augmentation
+            <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>: Universal vocoder
+            separately trained with the proposed smoothing augmentation (SA) method (shown in Figure
+            1)
           </li>
+        </ul>
+        <h3>Vocoder models</h3>
+        <ul>
+          <li><b>HiFi-GAN V1</b>: [1] (trained 1M steps)</li>
+          <li><b>UnivNet-c32</b>: [2] (trained 1M steps)</li>
+          <li>
+            <strong style="color: rgb(241, 53, 53)">eUnivNet (Proposed)</strong>: UnivNet-c16 +
+            harmonic-noise generator (HN-G) + MS-STFT/CoMB discriminators (M/C-D) (shown in Figure
+            2)
+          </li>
+          <li><b>eUnivNet-HN-G</b>: eUnivNet only with HN-G (without M/C-D)</li>
+          <li><b>eUnivNet-M/C-D</b>: eUnivNet only with M/C-D (without HN-G)</li>
         </ul>
       </div>
       <br />
       <hr />
 
-      <a name="tts_samples"><h2>TTS samples (seen speakers)</h2></a>
+      <a name="tts_samples_seen"><h2>Training Method Comparison</h2></a>
       <a name="t2_eunivnet">
         <h3>Tacotron 2 + <b>eUnivNet</b></h3>
       </a>
       <table>
         <thead>
           <tr>
+            <th style="text-align: center"><strong>Seen Speakers</strong></th>
             <th style="text-align: center"><strong>Recording</strong></th>
-            <th style="text-align: center"><strong>Universal</strong></th>
+            <th style="text-align: center"><strong>ST</strong></th>
             <th style="text-align: center"><strong>FT</strong></th>
             <th style="text-align: center">
-              <strong style="color: rgb(241, 53, 53)">Universal-SA (Proposed)</strong>
+              <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td style="text-align: center">F1</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio>
             </td>
@@ -125,6 +143,7 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">F2</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
             </td>
@@ -139,6 +158,7 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">M1</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio>
             </td>
@@ -153,6 +173,7 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">M2</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio>
             </td>
@@ -175,15 +196,17 @@
       <table>
         <thead>
           <tr>
+            <th style="text-align: center"><strong>Seen Speakers</strong></th>
             <th style="text-align: center"><strong>Recording</strong></th>
-            <th style="text-align: center"><strong>Universal</strong></th>
+            <th style="text-align: center"><strong>ST</strong></th>
             <th style="text-align: center">
-              <strong style="color: rgb(241, 53, 53)">Universal-SA (Proposed)</strong>
+              <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td style="text-align: center">F1</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio>
             </td>
@@ -195,6 +218,7 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">F2</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
             </td>
@@ -206,6 +230,19 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">M1</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/nar_01k_txt/fkhy024754.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/nar_01k_txt2/fkhy024754.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center">M2</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio>
             </td>
@@ -225,15 +262,17 @@
       <table>
         <thead>
           <tr>
+            <th style="text-align: center"><strong>Seen Speakers</strong></th>
             <th style="text-align: center"><strong>Recording</strong></th>
-            <th style="text-align: center"><strong>Universal</strong></th>
+            <th style="text-align: center"><strong>ST</strong></th>
             <th style="text-align: center">
-              <strong style="color: rgb(241, 53, 53)">Universal-SA (Proposed)</strong>
+              <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td style="text-align: center">F1</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio>
             </td>
@@ -245,6 +284,7 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">F2</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
             </td>
@@ -256,6 +296,19 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: center">M1</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/nar_01k_txt/fkhy024754.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/nar_01k_txt2/fkhy024754.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center">M2</td>
             <td style="text-align: left">
               <audio src="samples/rec/fkhy024754.wav" controls="" preload=""></audio>
             </td>
@@ -270,12 +323,164 @@
       </table>
       <br />
 
+      <a name="t2_eunivnet_unseen">
+        <h3>Unseen Speakers (Tacotron 2 + <b>eUnivNet</b>)</h3>
+      </a>
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align: center"><strong>Unseen Speakers</strong></th>
+            <th style="text-align: center"><strong>Recording</strong></th>
+            <th style="text-align: center"><strong>ST</strong></th>
+            <th style="text-align: center"><strong>FT</strong></th>
+            <th style="text-align: center">
+              <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center">F3</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio>
+              <audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_baseline/fkhy089991.wav" controls="" preload=""></audio>
+              <audio src="samples/ar_01k_baseline/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt/fkhy089991.wav" controls="" preload=""></audio>
+              <audio src="samples/ar_01k_txt/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio>
+              <audio src="samples/ar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center">M3</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
+              <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio>
+              <audio src="samples/ar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt/fkhy022600.wav" controls="" preload=""></audio>
+              <audio src="samples/ar_01k_txt/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+
+      <a name="tts_samples_ablation"><h2>Vocoder Model Comparison</h2></a>
+      <a name="t2_ablation">
+        <h3>Tacotron 2 + ST-SA vocoders</h3>
+      </a>
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align: center"><strong>Speaker</strong></th>
+            <th style="text-align: center"><strong>Recording</strong></th>
+            <th style="text-align: center"><strong>UnivNet-c32</strong></th>
+            <th style="text-align: center">
+              <strong style="color: rgb(241, 53, 53)">eUnivNet (Proposed)</strong>
+            </th>
+            <th style="text-align: center"><strong>eUnivNet-H/N-G</strong></th>
+            <th style="text-align: center"><strong>eUnivNet-M/C-D</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center">F1</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_baseline/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center">F2</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy089991.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center">M1</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center">M2</td>
+            <td style="text-align: left">
+              <audio src="samples/rec/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_baseline/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/ar_01k_txt2/fkhy022600.wav" controls="" preload=""></audio>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+
       <hr />
 
       <footer class="site-footer">
-        <span class="site-footer-credits"
-          >This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span
-        >
+        <span class="site-footer-credits">
+          This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.
+        </span>
       </footer>
     </section>
   </body>
