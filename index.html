@@ -254,6 +254,9 @@
           <tr>
             <th style="text-align: center"><strong>Seen Speakers</strong></th>
             <th style="text-align: center"><strong>Recording</strong></th>
+            <th style="text-align: center">
+              <strong>ST (GT features<sup>*</sup>) </strong>
+            </th>
             <th style="text-align: center"><strong>ST</strong></th>
             <th style="text-align: center">
               <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>
@@ -265,6 +268,9 @@
             <td style="text-align: center">F1</td>
             <td style="text-align: left">
               <audio src="samples/record_fkhy045357.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/as_hifigan_fkhy045357.wav" controls="" preload=""></audio>
             </td>
             <td style="text-align: left">
               <audio src="samples/t2_hifigan_fkhy045357.wav" controls="" preload=""></audio>
@@ -279,6 +285,9 @@
               <audio src="samples/record_fkkr071628.wav" controls="" preload=""></audio>
             </td>
             <td style="text-align: left">
+              <audio src="samples/as_hifigan_fkkr071628.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
               <audio src="samples/t2_hifigan_fkkr071628.wav" controls="" preload=""></audio>
             </td>
             <td style="text-align: left">
@@ -289,6 +298,9 @@
             <td style="text-align: center">M1</td>
             <td style="text-align: left">
               <audio src="samples/record_mksw002688.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
+              <audio src="samples/as_hifigan_mksw002688.wav" controls="" preload=""></audio>
             </td>
             <td style="text-align: left">
               <audio src="samples/t2_hifigan_mksw002688.wav" controls="" preload=""></audio>
@@ -303,6 +315,9 @@
               <audio src="samples/record_mkij05623.wav" controls="" preload=""></audio>
             </td>
             <td style="text-align: left">
+              <audio src="samples/as_hifigan_mkij05623.wav" controls="" preload=""></audio>
+            </td>
+            <td style="text-align: left">
               <audio src="samples/t2_hifigan_mkij05623.wav" controls="" preload=""></audio>
             </td>
             <td style="text-align: left">
@@ -311,7 +326,10 @@
           </tr>
         </tbody>
       </table>
-      * TODO: analysis-synthesis of ST HiFi-GAN V1
+      <sup>*</sup> The case that the model synthesize waveforms using the ground-truth acoustic
+      features. Note that <b>HiFi-GAN V1 ST</b> model's synthesis quality is greatly degraded when
+      using the acoustic model's predictions compared to ground-truth features.
+
       <br />
       <br />
       <a name="fs2_eunivnet">
