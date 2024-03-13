@@ -127,8 +127,8 @@
         </div>
         <h3>Vocoder Models</h3>
         <ul>
-          <li><b>HiFi-GAN V1</b>: [1] (trained 1M steps)</li>
-          <li><b>UnivNet-c32</b>: [2] (trained 1M steps)</li>
+          <li><b>HiFi-GAN V1</b> [1]</li>
+          <li><b>UnivNet-c32</b> [2]</li>
           <li>
             <strong style="color: rgb(241, 53, 53)">eUnivNet (Proposed)</strong>: UnivNet-c16 +
             harmonic-noise generator (HN-G) + MS-STFT/CoMB discriminators (M/C-D) (shown in Figure
@@ -545,6 +545,20 @@
       <br />
 
       <hr />
+      <small>
+        [1] J. Kong, J. Kim, and J. Bae, “HiFi-GAN: Generative adversarial networks for efficient
+        and high fidelity speech synthesis,” in Proc. NeurIPS, 2020, pp. 17022–17033.
+        <br />
+        (We trained the model for 1M steps using
+        <a href="https://github.com/jik876/hifi-gan">the official implementation</a>.)
+        <br />
+        [2] W. Jang, D. Lim, J. Yoon, B. Kim, and J. Kim, “UnivNet: A neural vocoder with
+        multi-resolution spectrogram discriminators for high-fidelity waveform generation,” in Proc.
+        INTERSPEECH, 2021, pp. 2207–2211.
+        <br />
+        (We trained the model for 1M steps using
+        <a href="https://github.com/maum-ai/univnet">an open-source implementation</a>.)
+      </small>
 
       <footer class="site-footer">
         <span class="site-footer-credits">
