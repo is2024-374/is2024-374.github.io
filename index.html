@@ -69,103 +69,116 @@
         respectively.
       </p>
       <ul>
-        <li>Last update: 13 Mar 2024</li>
+        <li>Last update: 18 Mar 2024</li>
       </ul>
       <hr />
-      * TODO: table of contents
+      <div id="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+          <li><a href="#systems">Systems</a></li>
+          <li>
+            <a href="#method">Training Method Comparison</a>
+            <ul>
+              <li><a href="#t2_harnovo">Tacotron 2 + eUnivNet</a></li>
+              <li><a href="#t2_hifigan">Tacotron 2 + HiFi-GAN V1</a></li>
+              <li><a href="#fs2_harnovo">FastSpeech 2 + eUnivNet</a></li>
+              <li><a href="#t2_harnovo_unseen">Unseen Speakers (Tacotron 2 + eUnivNet)</a></li>
+            </ul>
+          </li>
+          <li><a href="#model">Vocoder Method Comparison</a></li>
+        </ul>
+      </div>
 
-      <div id="toc_container">
-        <h2><p class="toc_title">Systems</p></h2>
-        <h3>Vocoder Training Methods</h3>
-        <ul>
-          <li>
-            <b>ST</b>: Universal vocoder separately trained (ST) from acoustic models using the
-            ground-truth acoustic features
-          </li>
-          <li>
-            <b>FT</b>: Speaker-dependent vocoder fine-tuned using the corresponding acoustic model's
-            generation
-          </li>
-          <li>
-            <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>: Universal vocoder
-            separately trained with the proposed smoothing augmentation (SA) method (shown in Figure
-            1(b))
-          </li>
-        </ul>
-        <div style="text-align: center">
-          <div style="display: inline-flex; flex-direction: column">
-            <img
-              src="img/conventional_14pt.png"
-              style="width: 200px"
-              alt="Block diagram of conventional separate training method. The vocoder is trained with ground-truth acoustic features, and inferenced with acoustic model's generations."
-              id="img-conventional"
-            />
-            <small
-              ><label for="img-conventional" style="margin: auto; left: 1.3em; position: relative"
-                >(a)</label
-              ></small
-            >
-          </div>
-          <div style="display: inline-flex; flex-direction: column">
-            <img
-              src="img/proposed_14pt.png"
-              style="display: inline; width: 200px"
-              alt="Block diagram of proposed smoothing augmentation method. The vocoder is trained with acoustic features that are augmented by random smoothing filters."
-              id="img-proposed"
-            />
-            <small
-              ><label for="img-proposed" style="margin: auto; left: 1.2em; position: relative">
-                (b)
-              </label></small
-            >
-          </div>
-          <br />
-          <small>
-            Figure 1: Block diagram of the vocoding process in the TTS framework: (a) ST and (b)
-            ST-SA (Proposed).
-          </small>
+      <hr />
+
+      <a href="#toc"><h2 id="#systems">Systems</h2></a>
+      <h3>Vocoder Training Methods</h3>
+      <ul>
+        <li>
+          <b>ST</b>: Universal vocoder separately trained (ST) from acoustic models using the
+          ground-truth acoustic features
+        </li>
+        <li>
+          <b>FT</b>: Speaker-dependent vocoder fine-tuned using the corresponding acoustic model's
+          generation
+        </li>
+        <li>
+          <strong style="color: rgb(241, 53, 53)">ST-SA (Proposed)</strong>: Universal vocoder
+          separately trained with the proposed smoothing augmentation (SA) method (shown in Figure
+          1(b))
+        </li>
+      </ul>
+      <div style="text-align: center">
+        <div style="display: inline-flex; flex-direction: column">
+          <img
+            src="img/conventional_14pt.png"
+            style="width: 200px"
+            alt="Block diagram of conventional separate training method. The vocoder is trained with ground-truth acoustic features, and inferenced with acoustic model's generations."
+            id="img-conventional"
+          />
+          <small
+            ><label for="img-conventional" style="margin: auto; left: 1.3em; position: relative"
+              >(a)</label
+            ></small
+          >
         </div>
-        <h3>Vocoder Models</h3>
-        <ul>
-          <li><b>HiFi-GAN V1</b> [1]</li>
-          <li><b>UnivNet-c32</b> [2]</li>
-          <li>
-            <strong style="color: rgb(241, 53, 53)">eUnivNet (Proposed)</strong>: UnivNet-c16 +
-            harmonic-noise generator (HN-G) + MS-STFT/CoMB discriminators (M/C-D) (shown in Figure
-            2(b))
-          </li>
-          <li><b>eUnivNet-HN-G</b>: eUnivNet only with HN-G (without M/C-D)</li>
-          <li><b>eUnivNet-M/C-D</b>: eUnivNet only with M/C-D (without HN-G)</li>
-        </ul>
-        <div style="text-align: center">
-          <div style="display: inline-flex; flex-direction: column">
-            <img src="img/univnet_block.png" style="width: 350px" alt="" id="img-univnet-block" />
-            <small><label for="img-univnet-block" style="margin: auto">(a)</label></small>
-          </div>
-          <div style="display: inline-flex; flex-direction: column">
-            <img
-              src="img/harnovo.png"
-              style="display: inline; width: 350px"
-              alt=""
-              id="img-harnovo"
-            />
-            <small><label for="img-harnovo" style="margin: auto">(b)</label></small>
-          </div>
-          <br />
-          <small>
-            Figure 2: The UnivNet architectures: (a) the vanilla UnivNet-c32 model and (b) the
-            proposed eUnivNet model. The notations c and k denote the number of channels and the
-            kernel size of the convolution layer, respectively.
-          </small>
+        <div style="display: inline-flex; flex-direction: column">
+          <img
+            src="img/proposed_14pt.png"
+            style="display: inline; width: 200px"
+            alt="Block diagram of proposed smoothing augmentation method. The vocoder is trained with acoustic features that are augmented by random smoothing filters."
+            id="img-proposed"
+          />
+          <small
+            ><label for="img-proposed" style="margin: auto; left: 1.2em; position: relative">
+              (b)
+            </label></small
+          >
         </div>
+        <br />
+        <small>
+          Figure 1: Block diagram of the vocoding process in the TTS framework: (a) ST and (b) ST-SA
+          (Proposed).
+        </small>
+      </div>
+      <h3>Vocoder Models</h3>
+      <ul>
+        <li><b>HiFi-GAN V1</b> [1]</li>
+        <li><b>UnivNet-c32</b> [2]</li>
+        <li>
+          <strong style="color: rgb(241, 53, 53)">eUnivNet (Proposed)</strong>: UnivNet-c16 +
+          harmonic-noise generator (HN-G) + MS-STFT/CoMB discriminators (M/C-D) (shown in Figure
+          2(b))
+        </li>
+        <li><b>eUnivNet-HN-G</b>: eUnivNet only with HN-G (without M/C-D)</li>
+        <li><b>eUnivNet-M/C-D</b>: eUnivNet only with M/C-D (without HN-G)</li>
+      </ul>
+      <div style="text-align: center">
+        <div style="display: inline-flex; flex-direction: column">
+          <img src="img/univnet_block.png" style="width: 350px" alt="" id="img-univnet-block" />
+          <small><label for="img-univnet-block" style="margin: auto">(a)</label></small>
+        </div>
+        <div style="display: inline-flex; flex-direction: column">
+          <img
+            src="img/harnovo.png"
+            style="display: inline; width: 350px"
+            alt=""
+            id="img-harnovo"
+          />
+          <small><label for="img-harnovo" style="margin: auto">(b)</label></small>
+        </div>
+        <br />
+        <small>
+          Figure 2: The UnivNet architectures: (a) the vanilla UnivNet-c32 model and (b) the
+          proposed eUnivNet model. The notations c and k denote the number of channels and the
+          kernel size of the convolution layer, respectively.
+        </small>
       </div>
       <br />
       <hr />
 
-      <a name="tts_samples_seen"><h2>Training Method Comparison</h2></a>
-      <a name="t2_eunivnet">
-        <h3>Tacotron 2 + <b>eUnivNet</b></h3>
-      </a>
+      <a href="#toc"><h2 id="method">Training Method Comparison</h2></a>
+      <h3 id="t2_harnovo">Tacotron 2 + <b>eUnivNet</b></h3>
       <table>
         <thead>
           <tr>
@@ -246,9 +259,7 @@
         </tbody>
       </table>
       <br />
-      <a name="t2_hifigan">
-        <h3>Tacotron 2 + <b>HiFi-GAN V1</b></h3>
-      </a>
+      <h3 id="t2_hifigan">Tacotron 2 + <b>HiFi-GAN V1</b></h3>
       <table>
         <thead>
           <tr>
@@ -334,9 +345,7 @@
 
       <br />
       <br />
-      <a name="fs2_eunivnet">
-        <h3>FastSpeech 2 + <b>eUnivNet</b></h3>
-      </a>
+      <h3 id="fs2_harnovo">FastSpeech 2 + <b>eUnivNet</b></h3>
       <table>
         <thead>
           <tr>
@@ -401,9 +410,7 @@
       </table>
       <br />
 
-      <a name="t2_eunivnet_unseen">
-        <h3>Unseen Speakers (Tacotron 2 + <b>eUnivNet</b>)</h3>
-      </a>
+      <h3 id="t2_harnovo_unseen">Unseen Speakers (Tacotron 2 + <b>eUnivNet</b>)</h3>
       <table>
         <thead>
           <tr>
@@ -467,10 +474,9 @@
       <br />
       <br />
 
-      <a name="tts_samples_ablation"><h2>Vocoder Model Comparison</h2></a>
-      <a name="t2_ablation">
-        <h3>Tacotron 2 + ST-SA vocoders</h3>
-      </a>
+      <hr />
+      <a href="#toc"><h2 id="model">Vocoder Model Comparison</h2></a>
+      <h3>Tacotron 2 + ST-SA vocoders</h3>
       <table>
         <thead>
           <tr>
